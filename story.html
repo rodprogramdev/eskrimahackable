@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STORY</title>
+          
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+    <div class="story__container" id="story__container">
+        <h1 class="story__heading--h1">Try to achieve more than 4 JUMPS!!! <br>TO KNOW MY STORY!!!</h1>
+        <a class="arrow-back" href="index.php">&larr; BACK TO HOME</a>
+        <div id="game">
+            <div id="character" onclick="jump()"></div>
+            <div id="enemy"> </div>
+        </div>
+     
+
+    </div>
+<!--     
+    <p class="storyText">
+        I was a stegasaurus that hides behind a laptop. My favorite number is 4 + 4 and you'll see what you are
+        looking
+        four. The clue is from 0 1 2 3 and from 3 we assign that to 0 and count again from 0 1 2 and we combine 0
+        and 2
+        to find the key to unlock a secret and fullfill your destiny. The magic word is ALACAZAM!!!
+    </p> -->
+
+
+    <script>
+        var character = document.getElementById("character");
+        var enemy = document.getElementById("enemy");
+
+
+        function jump() {
+            if (character.classList != "animate") {
+                character.classList.add("animate");
+            }
+
+            setTimeout(function () {
+                character.classList.remove("animate");
+            }, 500);
+         
+        }
+
+        
+        var gameOver = setInterval(function () {
+            //we get the top position of character. Parse it as an int that is because what was there before top posisiont with px and we only want number so we parsed it as an int.
+            //top position of character is 150 and then whne we click it it goes up to 100 and go back to 50. We are calculating the top position and when we calculate the left position of the block and then compare them against each other.
+            //We wan tot see if they are  hitting each other.
+            var char = document.getElementById("character");
+            var enLeft = document.getElementById("enemy");
+            var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+            var enemyLeft = parseInt(window.getComputedStyle(enLeft).getPropertyValue("left"));
+
+            if (enemyLeft < 120 && enemyLeft > 0 && charTop >= 110) {
+                enemy.style.animation = "none";
+                enemy.style.display = "none";
+                character.style.display="none";
+               
+                alert("YOU FAILED!! BUT DONT WORRY TRY AGAIN, REMEMBER THE WAY TO MASTERY IS THROUGH PRACTICE!!");
+            }
+
+        }, 10);
+
+      
+    </script>
+
+</body>
+
+</html>

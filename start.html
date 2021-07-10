@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>START GAME</title>
+    <link rel="stylesheet" href="styles/style.css">
+       
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <div class="start-game">
+        <audio autoplay>
+            <source src="x3rima-ethicalXhacker-mystory.mp3" type="audio/mp3">
+        </audio>
+        <div class="start-game__content">
+          
+            <h1 class="start-game__content--h1"><a href="rabbitHole.html" class="start-game__content--link">START STORY</a>
+            </h1>
+            
+            <img src="images/x3rima1.png" alt="" height="80px" width="80px">
+
+        </div>
+        <div class="start-game__blockquote">
+            <blockquote cite="spiderman 1 of tobey maguaire"> Who am i? Are you
+                sure you wanna know? The story of my life is not for the faint of heart. If somebody told you that I was
+                just an
+                average guy, not a care in the world. Somebody lied....
+            </blockquote>
+            <br>
+            <br>
+
+            <p class="start-game__para">ethicalXhacker(X3rima)</p>
+            <br>
+            <p class="start-game__para">CLUE: <span>my favorite hero</span></p>
+        
+        </div>
+        
+    </div>
+
+    <div class="form">
+        <form name="form" action="story.html" onsubmit="return validateAnswer()">
+            <label for="answer">Whose famous lines are these?</label>
+            <input type="text" placeholder="write your answer here!!" id="answer">
+            <!-- <button type="button" onclick="myFunction()">Submit</button> -->
+        </form>
+        
+    </div>
+    
+    <script>
+
+        //https://www.zealtyro.com/2020/09/how-to-disable-inspect-element-and-view-page-source.html
+        document.addEventListener('contextmenu', function(e){
+e.preventDefault();
+});
+
+        
+  function validateAnswer(){
+            let x = document.forms["form"]["answer"].value;
+            if (x !== "spiderman") {
+                alert("Sorry your answer is INCORRECT!!! Please try again");
+                return false;
+            }
+            
+           
+        }
+    </script>
+</body>
+
+</html>
