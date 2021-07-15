@@ -9,13 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* .background-image {
-            background-color: rgb(51, 211, 211);
-
-            height: 400px;
-            width: 100%;
-        } */
-
         * {
             margin: 0;
             padding: 0;
@@ -32,9 +25,9 @@
             position: absolute;
             top: 400px;
             left: 400px;
-            height: 230px;
+            height: 200px;
             width: 145px;
-            /* background-color: green; */
+            background-color: green;
             /* height:230px;
             width:130px;
             /* overflow-y: scroll; */
@@ -45,6 +38,23 @@
             /* background-color:green; */
 
         }
+
+
+
+        #heroBullet {
+            background-image: url(../images/goon1Bullet.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            display: inline;
+            top: 495px;
+            left: 430px;
+            height: 50px;
+            width: 50px;
+
+        }
+
+
 
 
         .arrow-back2 {
@@ -73,13 +83,13 @@
             background-repeat: no-repeat;
             position: absolute;
             display: inline;
-            top: 580px;
+            top: 600px;
             left: 1200px;
-            height: 50px;
+            height: 40px;
+            /* height:50px; */
             width: 100px;
-            /* background-color: green; */
+            background-color: green;
             /* background-color: red; */
-
             animation-name: example;
             animation-duration: 5s;
             animation-iteration-count: infinite;
@@ -87,23 +97,21 @@
 
         }
 
- 
-
-@keyframes example {
-  0% {
-    left: 1200px;
-  }
-  /* 50% {
-    left: -60px;
-  } */
-
-  100%{
-      left: -100px;
-  }
-}
 
 
-#enemy2 {
+        @keyframes example {
+            0% {
+                left: 1200px;
+            }
+
+
+            100% {
+                left: -100px;
+            }
+        }
+
+
+        #enemy2 {
             background-image: url(../images/enem.png);
             background-size: 100%;
             background-repeat: no-repeat;
@@ -114,7 +122,7 @@
             height: 50px;
             width: 100px;
             /* background-color: green; */
-            /* background-color: red; */
+            /* background-color: blue; */
 
             animation-name: example2;
             animation-duration: 10s;
@@ -123,24 +131,22 @@
 
         }
 
- 
 
-@keyframes example2 {
-  0% {
-    left: 2200px;
-  }
-  /* 50% {
-    left: -60px;
-  } */
 
-  100%{
-      left: -100px;
-  }
-}
+        @keyframes example2 {
+            0% {
+                left: 2200px;
+            }
+
+
+            100% {
+                left: -100px;
+            }
+        }
 
 
 
-#enemy3 {
+        #enemy3 {
             background-image: url(../images/fireenemy.png);
             background-size: 100%;
             background-repeat: no-repeat;
@@ -157,25 +163,41 @@
 
         }
 
- 
-
-@keyframes example3 {
-  0% {
-    left: 3200px;
-  }
-  /* 50% {
-    left: -60px;
-  } */
-
-  100%{
-      left: -100px;
-  }
-}
 
 
+        @keyframes example3 {
+            0% {
+                left: 3200px;
+            }
+
+            30% {
+                top: 420px;
+
+            }
+
+            40% {
+                top: 350px;
+            }
+
+            50% {
+                top: 450px;
+
+            }
+
+            80% {
+                top: 380px;
+            }
+
+            100% {
+                top: 380px;
+                left: -100px;
+            }
+        }
 
 
-#goon1 {
+
+
+        #goon1 {
             background-image: url(../images/robot1.png);
             background-size: 100%;
             background-repeat: no-repeat;
@@ -194,30 +216,30 @@
 
 
 
-@keyframes goon1Animate {
-  0% {
-    left: 3500px;
-  }
- 
-
-  50%{
-      left: 3400px;
-  }
-  
-  70%{
-      top:390px;
-  } 
+        @keyframes goon1Animate {
+            0% {
+                left: 3500px;
+            }
 
 
-  100%{
-      left:3500px;
-  }
-}  
+            50% {
+                left: 3400px;
+            }
+
+            70% {
+                top: 390px;
+            }
+
+
+            100% {
+                left: 3500px;
+            }
+        }
 
 
 
 
-#goon1Bullet {
+        #goon1Bullet {
             background-image: url(../images/goon1Bullet.png);
             background-size: 100%;
             background-repeat: no-repeat;
@@ -232,53 +254,88 @@
             animation-iteration-count: infinite;
             animation-timing-function: linear;
 
+
         }
 
- 
 
-@keyframes Bullet {
-    0% {
-    left: 3500;
-  }
- 
-  50%{
-      left: 3200px;
-  }
-/*   
-  70%{
-      top:380px;
-  }  */
 
-  100%{
-      left:2300px;
-  }
-}
+        @keyframes Bullet {
+            0% {
+                left: 3500;
+            }
 
-.manhole--1{
-    height: 100px;
-    width: 100px;
-    position:absolute;
-    top: 620px;
-    left: 1200px;
-   display:inline;
-    background-image: url(../images/manhole.png);
-    background-size: 100%;
-    background-repeat:no-repeat;
-    z-index:0;
-}
+            50% {
+                left: 3200px;
+            }
 
-.manhole--2{
-    height: 100px;
-    width: 100px;
-    position:absolute;
-    top: 620px;
-    left: 2200px;
-   display:inline;
-    background-image: url(../images/manhole.png);
-    background-size: 100%;
-    background-repeat:no-repeat;
-    z-index:0;
-}
+            100% {
+                left: 2300px;
+            }
+        }
+
+
+        
+        #reverseBullet {
+            background-image: url(../images/goon1Bullet.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            display: inline;
+            top: 495px;
+            left: 2800px;
+            height: 50px;
+            width: 100px;
+            animation-name: reverseBullet;
+            animation-duration: 2s;
+            animation-iteration-count:infinite;
+            animation-timing-function: linear;
+            opacity:0;
+            visibility:hidden;
+
+        }
+
+
+        @keyframes reverseBullet {
+            0% {
+                left: 3000;
+                opacity:1;
+            }
+            20%{
+                left:2800;
+            }
+
+            100% {
+                left: 4000px;
+                opacity:0.7;
+                display:none;
+            }
+        }
+
+        .manhole--1 {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 625px;
+            left: 1200px;
+            display: inline;
+            background-image: url(../images/manhole.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .manhole--2 {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 620px;
+            left: 2200px;
+            display: inline;
+            background-image: url(../images/manhole.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
 
 
 
@@ -305,6 +362,7 @@
         .inner-wrapper {
             display: flex;
             flex-direction: row;
+            /* width: 595vh; */
             width: 595vh;
             /*Should be equal to the value of the content divs*/
             transform: rotate(90deg) translateY(-100vh);
@@ -339,7 +397,7 @@
             border-radius: 5px;
         }
 
-        /* 
+        /*
         .tiles{
             height:20%;
             background-image:url(../images/rabbit.png);
@@ -350,30 +408,30 @@
         } */
 
         .one {
-       
+
 
             background-image: url(../images/building-background.png);
-            background-size: cover;
-          
+            background-size: 100%;
+            background-repeat: no-repeat;
             background-position: 100% 100%;
 
         }
 
-      
+
 
         .three {
             background-image: url(../images/building-background.png);
-            background-size: cover;
-           
+            background-size: 100%;
+            background-repeat: no-repeat;
             background-position: 100% 100%;
         }
 
         .four {
-          
+
 
             background-image: url(../images/building2.png);
-            background-size: cover;
-          
+            background-size: 100%;
+            background-repeat: no-repeat;
             background-position: 100% 100%;
 
         }
@@ -387,14 +445,16 @@
             color: #fff;
         }
 
-        #audioPlay{
-            background-color:red;
-            opacity:.5;
-            position:absolute;
-            top:40%;
-            left:88%;
-            width:2%;
-            border-radius:50%;
+        #audioPlay {
+            background-color: red;
+            opacity: .5;
+            position: absolute;
+            top: 50%;
+            left: 88%;
+            width: 2%;
+            border-radius: 50%;
+            opacity:0;
+            cursor:pointer;
         }
     </style>
 </head>
@@ -412,18 +472,20 @@
                 <p class="slide__paragraph">{Use D to move forward | A Backward | S Down | W Up & Mouse to scroll
                     background}</p>
 
-                <div id="mainCharacter"></div>
+                <div id="mainCharacter" onclick="attackButton()"></div>
+                <!-- <div id="heroBullet"></div> -->
                 <div id="enemy"></div>
-                <div class="manhole--1"></div>     
+                <div class="manhole--1"></div>
                 <div id="enemy2"></div>
-                <div class="manhole--2"></div>          
+                <div class="manhole--2"></div>
                 <div id="enemy3"></div>
                 <div id="enemy4"></div>
                 <div id="goon1"></div>
                 <div id="goon1Bullet"></div>
+                <div id="reverseBullet"></div>
             </div>
             <!-- <div class="slide two">
-                <h1>This is me</h1> 
+                <h1>This is me</h1>
             </div> -->
             <div class="slide three">
                 <!-- <h1>Doing a Horizontal Scrolling</h1> -->
@@ -436,93 +498,107 @@
                 <!-- <h2>This is a rabit hole.....</h2> -->
                 <br>
                 | <a href="../game2/brickgame.html">BRICKS GAME</a> |
-                <a href="../game3/snakegame.html">SNAKE GAME</a> | 
-                <a href="../game4/tennisGame.html">TENNIS GAME</a> | 
-                <a href="../game5/snakegame.html">SCRATCH GAME</a> | 
-                <a href="../index.html">BACK TO HOME</a> | 
+                <a href="../game3/snakegame.html">SNAKE GAME</a> |
+                <a href="../game4/tennisGame.html">TENNIS GAME</a> |
+                <a href="../game5/snakegame.html">SCRATCH GAME</a> |
+                <a href="../index.html">BACK TO HOME</a> |
 
-                
+
             </div>
-<!-- 
+            <!--
             <div class="slide five">
                 <p style="color:#fff;">..--..</p>
             <div> -->
 
-           
+
         </div>
 
     </div>
-  
- 
-   
+
+
+
     <script>
 
-        //test detection
-        // function anim(e){
 
-        //     alert(e.keyCode);
-        // }
-        // document.onkeydown = anim;
 
         //68 D
         //87 W
         //65 A
         //83 S
         //70 F
+        //16
+
 
         var moveleft = 400;
         var moveUp = 400;
-        var changeBackground;
-        var release;
 
+        const hero = {
+            top: 400,
+            left: 400,
+            height: 230,
+            width: 145
+        }
+        const snake = {
+            top: 400,
+            left: 400,
+            height: 230,
+            width: 145
+        }
 
         function animateAll(e) {
 
 
+
+            if (e.keyCode == 87) {
+                if (moveUp > 380) {
+                    moveUp -= 20;
+                    mainCharacter.style.top = moveUp + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/moveUp3.png')";
+                }// end of boundary moving up
+
+            }//end of moveUp
+
+            if (e.keyCode == 83) {
+                if (moveUp < 440) {
+                    moveUp += 20;
+                    mainCharacter.style.top = moveUp + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/moveDown2.png')";
+                }// end of boundary moving down
+            }//end of moveDown
+
+
+            if (e.keyCode == 68) { //3710
+                if (moveleft < 3650) {
+                    moveleft += 50;
+                    mainCharacter.style.left = moveleft + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/x3rima2.png')";
+                   
+                }  // end if statement of boundary moving right
+            }//end of moveforward
+
+            if (e.keyCode == 70) {
+                if (moveleft < 3650) {
+                    moveleft += 100;
+                    mainCharacter.style.left = moveleft + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/duckDash.png')";
+                    // dash();
+                }
+            }//end of duckDASH FORWARD
+
+            if (e.keyCode == 65) {
+                if (moveleft > 0) {
+                    moveleft -= 100;
+                    mainCharacter.style.left = moveleft + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/backward.png')";
+                }//end of boundary moving left
+
+            }//end of move backward
             // if (e.keyCode == 70) {
             //     moveUp -= 200;
             //     mainCharacter.style.top = moveUp + 'px';
             //     mainCharacter.style.backgroundImage = "url('../images/x3rima1.png')";
             // }//Jump character
 
-            if (e.keyCode == 87) {
-                moveUp -= 20;
-                mainCharacter.style.top = moveUp + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/moveUp3.png')";
-            }//end of moveUp
-
-           if (e.keyCode == 83) {
-              moveUp += 20;
-                mainCharacter.style.top = moveUp + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/moveDown2.png')";
-            }//end of moveDown
-
-
-            if (e.keyCode == 68) {
-                moveleft += 50;
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/x3rima2.png')";
-
-            }//end of moveforward
-           
-            if (e.keyCode == 70) {
-                moveleft += 200;
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/x3rima2.png')";
-                dash();
-            }//end of DASH FORWARD
-
-            if (e.keyCode == 65) {
-                moveleft -= 100;
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/backward.png')";
-            }//end of move backward
-
-            if (e.keyCode == 69) {
-                moveleft += 5;
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/attack.png')";
-            }//end of attack
 
             if (e.keyCode == 16) {
                 moveleft += 100;
@@ -532,63 +608,207 @@
 
 
             if (e.keyCode == 81) {
-                moveleft += 5;q
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/kick3.png')";
+                if (moveleft < 3650) {
+                    moveleft += 5;
+                    mainCharacter.style.left = moveleft + 'px';
+                    mainCharacter.style.backgroundImage = "url('../images/kick3.png')";
+                }
             }//end of attack
 
-        }//end of function
+            // attackButton(event);
+            gameOver();
+
+        }//end of function animateAll
 
 
-       
+
+
+        // function attackButton(event) {
+
+        //     if (event.keyCode == 69) {
+        //         moveleft += 5;
+        //         mainCharacter.style.left = moveleft + 'px';
+        //         mainCharacter.style.backgroundImage = "url('../images/attack.png')";
+        //         attackCollision();
+        //     }//end of attack 
+        //     // else (event.keyCode){
+        //     //     mainCharacter.onkeyup = gameOverCollision();
+        //     // }
+        // }//end of Function attackButton
+
+        function attackCollision() {
+            var firstCollision = setInterval(function () {
+                // let hasjustCollided = false;
+                var char = document.getElementById("mainCharacter");
+                var enLeft = document.getElementById("enemy");
+                var en2Left = document.getElementById("enemy2");
+                var goon1Bullet = document.getElementById("goon1Bullet");
+
+
+                var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                var charLeft = parseInt(window.getComputedStyle(char).getPropertyValue("left"));
+                var charWidth = parseInt(window.getComputedStyle(char).getPropertyValue("width"));
+                var charHeight = parseInt(window.getComputedStyle(char).getPropertyValue("height"));
+               
+                var enemyLeft = parseInt(window.getComputedStyle(enLeft).getPropertyValue("left"));
+                var enemyWidth = parseInt(window.getComputedStyle(enLeft).getPropertyValue("width"));
+                var enemyTop = parseInt(window.getComputedStyle(enLeft).getPropertyValue("top"));
+                var enemyHeight = parseInt(window.getComputedStyle(enLeft).getPropertyValue("height"));
+
+
+                var enemy2Left = parseInt(window.getComputedStyle(en2Left).getPropertyValue("left"));
+                var enemy2Width = parseInt(window.getComputedStyle(en2Left).getPropertyValue("width"));
+                var enemy2Top = parseInt(window.getComputedStyle(en2Left).getPropertyValue("top"));
+                var enemy2Height = parseInt(window.getComputedStyle(en2Left).getPropertyValue("height"));
+                var enemy2Left = parseInt(window.getComputedStyle(en2Left).getPropertyValue("left"));
+
+                var goon1BulletLeft = parseInt(window.getComputedStyle(goon1Bullet).getPropertyValue("left"));
+                var goon1BulletWidth = parseInt(window.getComputedStyle(goon1Bullet).getPropertyValue("width"));
+                var goon1BulletTop = parseInt(window.getComputedStyle(goon1Bullet).getPropertyValue("top"));
+                var goon1BulletHeight = parseInt(window.getComputedStyle(goon1Bullet).getPropertyValue("height"));
+                var goon1BulletLeft = parseInt(window.getComputedStyle(goon1Bullet).getPropertyValue("left"));
+
+                
+                if (charLeft < enemyLeft + enemyWidth &&
+                    charLeft + charWidth > enemyLeft &&
+                    charTop < enemyTop + enemyHeight &&
+                    charTop + charHeight > enemyTop
+                ) {
+                    enemy.style.display = "none";
+                    // enemy.style.visibility ="hidden";
+                }
+                else{
+                   
+                //    // document.onkeyup = animateAll;
+                    enemy.style.display="inline";       
+                 }
+
+                // if (enemyLeft < charLeft + 100 &&
+                //     enemyLeft > 0  &&
+                //      charTop >= hero.top
+                //     ) {
+
+                //     enemy.style.display = "none";
+                //     // char.style.display ="none";
+                //     // alert("TRY AGAIN!!!");
+                // }
+                // if (enemy2Left < charLeft + 50 &&
+                //     enemy2Left > 0 && charTop >= 400
+                // ) {
+                //     // enemy2.style.animation = "none";
+                //     enemy2.style.display = "none";
+                // }
+                if (charLeft < enemy2Left + enemy2Width &&
+                    charLeft + charWidth > enemy2Left &&
+                    charTop < enemy2Top + enemy2Height &&
+                    charTop + charHeight > enemy2Top
+                ) {
+                    enemy2.style.display = "none";
+                } else{
+                    enemy2.style.display="inline";
+                }
+
+                if (charLeft < goon1BulletLeft + goon1BulletWidth &&
+                    charLeft + charWidth > goon1BulletLeft &&
+                    charTop < goon1BulletTop + goon1BulletHeight &&
+                    charTop + charHeight > goon1BulletTop
+                ) {
+                    goon1Bullet.style.opacity = 0;
+                    reverseBullet.style.opacity = 1;
+                    reverseBullet.style.visibility = "visible";             
+                   
+                 } 
+            }, 10);
+        } // end of Function attackCollision
+
+
+        
+
+            setInterval(function(){
+                var reverseBullet = document.getElementById("reverseBullet");
+                var robot = document.getElementById("goon1");
+                var char = document.getElementById("mainCharacter");
+
+                var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                var charLeft = parseInt(window.getComputedStyle(char).getPropertyValue("left"));
+                var charWidth = parseInt(window.getComputedStyle(char).getPropertyValue("width"));
+                var charHeight = parseInt(window.getComputedStyle(char).getPropertyValue("height"));
+               
+                var robotLeft = parseInt(window.getComputedStyle(robot).getPropertyValue("left"));
+                var reverseBulletLeft = parseInt(window.getComputedStyle(reverseBullet).getPropertyValue("left"));
+
+                if (charLeft < goon1BulletLeft + goon1BulletWidth &&
+                    charLeft + charWidth > goon1BulletLeft &&
+                    charTop < goon1BulletTop + goon1BulletHeight &&
+                    charTop + charHeight > goon1BulletTop
+                ){}
+            },10);
+        
+            
+        
 
         document.onkeydown = animateAll;
 
-        function mouseClick(event) {
-            if (event.button == 0) {
-                moveleft += 10;
-                mainCharacter.style.left = moveleft + 'px';
-                mainCharacter.style.backgroundImage = "url('../images/attack.png')";
-
-            } //end of if attack mousclick
-
-
-        }//end of function MouseClick
-
-        document.onmousedown = mouseClick;
-
-        // var enemyMove = setInterval(function () {
-        //    var enemyLeft = document.getElementById("enemy");
-        //    var enemyMoveLeft = 100;
-        //    enemyMoveLeft -= 1;
-        //    enemy.style.left = moveleft + 'px';
-           
-        // }, 2000);
+         function mouseClick(event) {
+             if (event.button == 0) {
+                 moveleft += 10;
+                 mainCharacter.style.left = moveleft + 'px';
+                 mainCharacter.style.backgroundImage = "url('../images/attack.png')";
+                 attackCollision();
+             } //end of if attack mousclick
+            
+            
+         }//end of function MouseClick
 
 
-    // var char = document.getElementById("mainCharacter");
-    // var enLeft = document.getElementById("enemy");
-    // var charRight = parseInt(window.getComputedStyle(char).getPropertyValue("right"));
-    // var enemyLeft = parseInt(window.getComputedStyle(enLeft).getPropertyValue("left"));
+         function gameOver(){
+            var deadCharacter = setInterval(function () {
+                // let hasjustCollided = false;
+                var char = document.getElementById("mainCharacter");
+                var enLeft = document.getElementById("enemy");
+                var en2Left = document.getElementById("enemy2");
+                var goon1Bullet = document.getElementById("goon1Bullet");
 
 
-    // function defeatEnemy() {
-    //     if (enemyLeft == charRight) {
-    //         // enemy.style.animation = "none";
-    //         enemy.style.display = "none";
+                var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                var charLeft = parseInt(window.getComputedStyle(char).getPropertyValue("left"));
+                var charWidth = parseInt(window.getComputedStyle(char).getPropertyValue("width"));
+                var charHeight = parseInt(window.getComputedStyle(char).getPropertyValue("height"));
+               
+                var enemyLeft = parseInt(window.getComputedStyle(enLeft).getPropertyValue("left"));
+                var enemyWidth = parseInt(window.getComputedStyle(enLeft).getPropertyValue("width"));
+                var enemyTop = parseInt(window.getComputedStyle(enLeft).getPropertyValue("top"));
+                var enemyHeight = parseInt(window.getComputedStyle(enLeft).getPropertyValue("height"));
+
+            if (charLeft < enemyLeft + enemyWidth &&
+                    charLeft + charWidth > enemyLeft &&
+                    charTop < enemyTop + enemyHeight &&
+                    charTop + charHeight > enemyTop
+                ) {
+                   
+                    enemy.style.display = "none";
+                    enemy.style.visibility="hidden";
+                    enemy.style.animation = "none";
+                    mainCharacter.style.display = "none";
+                    mainCharacter.style.visibility = "hidden";
+                    mainCharacter.style.animation = "none";
+                    alert("SORRY PLEASE TRY AGAIN!!")
+                    // document.onkeyup = gameOver;
+                }
+            }, 10);
+         }
+         
+          document.onmousedown = mouseClick;
+
+         
+
+        /*************************************************************/
 
 
 
-    //     }
-
-
-
-    // }
-
-      
 
     </script>
-  
+
 </body>
 
 </html>

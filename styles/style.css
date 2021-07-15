@@ -25,6 +25,7 @@ h1{
 /**************************HEADER SECTION**************************/
 .header__containter {
   position: relative;
+  height:100vh;
 }
 
 .header__login {
@@ -73,24 +74,7 @@ h1{
   transition: all 0.35s ease;
   opacity: 0;
 }
-/* 
-.nav a::before {
-  content: '';
-  right: 0;
-  top: 0;
-  border-top: 3px solid #3E8914;
-  border-right: 3px solid #2E640F;
-  transform: translate(-100%, 50%);
-}
 
-.nav a:after {
-  content: '';
-  left: 0;
-  bottom: 0;
-  border-bottom: 3px solid #2E640F;
-  border-left: 3px solid #3E8914;
-  transform: translate(100%, -50%)
-} */
 
 .nav a::before {
   content: "";
@@ -135,21 +119,34 @@ h1{
   border: 5px solid #fff;
 }
 
-.header__heading {
+.header__heading--1{
   position: absolute;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+ font-size:1rem;
+
 }
 
 h1 {
   text-align: center;
+ 
 }
 
-p {
+.header__paragraph {
   color: #212121;
   text-align: center;
+position:relative;
+  left: 0;
+  top:90%;
+}
+
+/**************ABOUT******************/
+
+.about{
+  height: 100vh;
+  margin-top:50%;
 }
 
 /**************STORY******************/

@@ -7,41 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First Game Coding Exercise</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body{
+
+        body {
             font-family: 'Press Start 2P', cursive;
-            margin:0;
+            margin: 0;
         }
+
         .canvas {
             height: 100vh;
-            background-color:rgb(61, 41, 41);
+            background-color: rgb(61, 41, 41);
             display: block;
             text-align: center;
-            
+
             color: black;
             padding-top: 1%;
             border: 10px solid black;
         }
 
-        h1{
-            color:#fff;
-            font-size:1rem;
+        h1 {
+            color: #fff;
+            font-size: 1rem;
         }
-        
-        p{color:#fff;
-        font-size:3px;
+
+        p {
+            color: #fff;
+            font-size: 3px;
         }
     </style>
 </head>
 
 <body>
-   
+
 
     <div class="canvas">
         <h1>BRICK GAME</h1>
@@ -69,10 +72,10 @@
         const PADDLE_WIDTH = 100; // width of the paddle
         const PADDLE_THICKNESS = 10; //top to bottom
         const PADDLE_DIST_FROM_EDGE = 60;// 10% of the height of the canvass 
-       
+
         const BRICK_W = 70;
         const BRICK_H = 20;
-        const BRICK_GAP =2;
+        const BRICK_GAP = 2;
         const BRICK_COLS = 13;
         const BRICK_ROWS = 10;
 
@@ -83,15 +86,15 @@
         // var brick2 = true;
         // var brick3 = true;
         // var brick4 = true;
-        
+
         // var brickGrid = [ true, true, true, true, true ];
-        var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);        
+        var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 
 
 
         /*****************************FUNCTION TO UPDATE THE MOUSE POSITION**********************************************/
-       
-         
+
+
         function updateMousePosition(mouseEvent) {
             var rect = canvas.getBoundingClientRect(); // this will give us the position on the page of our actual canvass. If there is additional text or body or something above it on the page. 
             var root = document.documentElement; // this are slightly weird javascript bits. Every programming language has a weird way of getting to the mouse or the keyboard inputs. 
@@ -100,44 +103,44 @@
 
             mouseX = mouseEvent.clientX - rect.left - root.scrollLeft; // this will grab the clientX which is what we call the mouse coordinates. We also subtract out how far the canvass is from the left side. and how far the person has scrolled side to side.  
             mouseY = mouseEvent.clientY - rect.top - root.scrollTop; // we don't need the mouse Y but we might need this value some other time so we put it here. 
-            
-            paddleX = mouseX - PADDLE_WIDTH/2; // we set the paddleX straight to it. This should update the X coordinate for paddle x. This 
-                  
-       
+
+            paddleX = mouseX - PADDLE_WIDTH / 2; // we set the paddleX straight to it. This should update the X coordinate for paddle x. This 
+
+
         }
 
-      
+
         /******************************FUNCTION DECLARATION WHEN THE WINDOWS LOAD******************************************/
 
-        function brickReset(){
-                for (var i=0; i < BRICK_COLS * BRICK_ROWS; i++){
-                    // if(Math.random() <0.5){
-                         brickGrid[i] = true;
-                    // } else {
-                    //     brickGrid[i] = false;
+        function brickReset() {
+            for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
+                // if(Math.random() <0.5){
+                brickGrid[i] = true;
+                // } else {
+                //     brickGrid[i] = false;
 
-                    //} // end of else (random check)
-                    
-                }// end of for each brick
+                //} // end of else (random check)
+
+            }// end of for each brick
             //    brickGrid[20]=false;
         } //end of brickReset function
 
         window.onload = function () {
             var framesPersecond = 30;
-            setInterval(updateAll, 1000 / framesPersecond);       
+            setInterval(updateAll, 1000 / framesPersecond);
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
 
 
             /*******************************CODE TO MAKE THE PADDLE TO MOVE*****************************/
-         
+
             canvas.addEventListener('mousemove', updateMousePosition);
 
             brickReset();
             ballReset()
         }
 
-      
+
         /******************************FUNCTION DECLARATION FOR UPDATING THE MOVEMENT OF THE BALL******************************************/
 
         function updateAll() {
@@ -148,16 +151,13 @@
         /****************************FUNCTION BALL RESET*************************************************/
         //This will stick the ball in the middle of the screen when it misses the ball at the bottom. 
 
-        function ballReset(){
-            ballX = canvas.width/2; // we could hard code this but we want this so that in case we would want to change the size later.
-            ballY = canvas.height/2;
+        function ballReset() {
+            ballX = canvas.width / 2; // we could hard code this but we want this so that in case we would want to change the size later.
+            ballY = canvas.height / 2;
         }
 
         //Lets look at the code in the moveAll function on when does the ball hit the bottom of the screen. 
-
-
-
-        function moveAll() {
+        function ballMove() {
             ballX += ballSpeedX;
             if (ballX < 0) { //left side
                 ballSpeedX *= -1;
@@ -177,65 +177,74 @@
                 //ballSpeedY *= -1;
             }
 
-             var ballBrickCol = Math.floor(ballX / BRICK_W);
-             var ballBrickRow = Math.floor(ballY / BRICK_H);
-             var brickIndexUnderBall = rowColToArrayIndex(ballBrickCol,ballBrickRow);
-            
-             if(ballBrickCol >= 0 && ballBrickCol < BRICK_COLS &&
-                 ballBrickRow >= 0 && ballBrickRow < BRICK_ROWS){
+        }
 
-                    if(brickGrid[brickIndexUnderBall]){
-                        brickGrid[brickIndexUnderBall] = false;
-                 ballSpeedY *= -1;
+        function ballBrickHandling() {
 
-                    }
-                 
-             }
-            
+            var ballBrickCol = Math.floor(ballX / BRICK_W);
+            var ballBrickRow = Math.floor(ballY / BRICK_H);
+            var brickIndexUnderBall = rowColToArrayIndex(ballBrickCol, ballBrickRow);
 
-    //  we need to figure out what are the four edges of that paddle. This is the code for the ball to reflect on the paddle
-            var paddleTopEdgeY = canvas.height-PADDLE_DIST_FROM_EDGE;
+            if (ballBrickCol >= 0 && ballBrickCol < BRICK_COLS &&
+                ballBrickRow >= 0 && ballBrickRow < BRICK_ROWS) {
+
+                if (brickGrid[brickIndexUnderBall]) {
+                    brickGrid[brickIndexUnderBall] = false;
+                    ballSpeedY *= -1;
+
+                }// end of brick found
+
+            }// end of valid col and row
+
+        }// end of ballBrickHandling function
+
+
+        function ballPaddleHandling() {
+            //  we need to figure out what are the four edges of that paddle. This is the code for the ball to reflect on the paddle
+            var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
             var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
             var paddleLeftEdgeX = paddleX;
             var paddleRightEdgeX = paddleLeftEdgeX + PADDLE_WIDTH;
-            if  (ballY > paddleTopEdgeY && // below the top of paddle
+            if (ballY > paddleTopEdgeY && // below the top of paddle
                 ballY < paddleBottomEdgeY &&  // above bottom of paddle
                 ballX > paddleLeftEdgeX &&  // right of the left side of paddle
-                ballX < paddleRightEdgeX){ //left of the right side of the paddle
+                ballX < paddleRightEdgeX) { //left of the right side of the paddle
                 ballSpeedY *= -1;
 
                 /*BALL CONTROL CODE*/
-                
-                var centerOfPaddleX = paddleX + PADDLE_WIDTH/2;
+
+                var centerOfPaddleX = paddleX + PADDLE_WIDTH / 2;
                 var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
                 ballSpeedX = ballDistFromPaddleCenterX * 0.35;
+            }
+        }
 
-
-
-
-                }
+        function moveAll() {
+            ballMove();
+            ballBrickHandling();
+            ballPaddleHandling();
         }
 
 
-        function rowColToArrayIndex(col,row){
+        function rowColToArrayIndex(col, row) {
             return col + BRICK_COLS * row;
 
         }
         /******************************GENERAL FUNCTION DECLARATION FOR DRAWING ON THE CANVASS******************************************/
         function drawBricks() {
-            for (var eachRow=0;eachRow<BRICK_ROWS;eachRow++){
-                for ( var eachCol=0;eachCol<BRICK_COLS;eachCol++){
+            for (var eachRow = 0; eachRow < BRICK_ROWS; eachRow++) {
+                for (var eachCol = 0; eachCol < BRICK_COLS; eachCol++) {
 
-                var arrayIndex = rowColToArrayIndex( eachCol, eachRow);
+                    var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 
-                if (brickGrid[arrayIndex]){
-                    colorRect(BRICK_W*eachCol,BRICK_H*eachRow, 
-                    BRICK_W-BRICK_GAP,BRICK_H-BRICK_GAP, 'red' );
-                } //end of is this brick here
-            } // end of for each brick      
+                    if (brickGrid[arrayIndex]) {
+                        colorRect(BRICK_W * eachCol, BRICK_H * eachRow,
+                            BRICK_W - BRICK_GAP, BRICK_H - BRICK_GAP, 'red');
+                    } //end of is this brick here
+                } // end of for each brick      
             }
-          
-            
+
+
             // for ( var i=0;i<BRICK_COUNT;i++){
             //     if (brickGrid[i]){
             //         colorRect(BRICK_W*i,BRICK_H, 
@@ -258,14 +267,14 @@
             colorRect(0, 0, canvas.width, canvas.height, 'black'); // This will clear the screen
             colorCircle(ballX, ballY, 10, 'white'); // This will draw the circle  
 
-          
+
 
             /************DRAW BRICKS***************/
-         
+
 
             /********DRAW OUR PADDLE RECTANGLE*************/
-            colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, 
-                    PADDLE_WIDTH,PADDLE_THICKNESS, 'white');
+            colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE,
+                PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
             /*we want to know here all 4 edges of the paddle then we go and count the collision of the ball
               we need to figure out what are the four edges of that paddle.
             */
@@ -284,17 +293,17 @@
             //     brickGrid[brickIndexUnderMouse] = false;
 
             // }
-            
-           
+
+
 
         }
 
-       
+
         /******************************FUNCTION DECLARATION WHEN THE WINDOWS LOAD******************************************/
 
 
 
-       
+
         function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
             canvasContext.fillStyle = fillColor;
             canvasContext.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
