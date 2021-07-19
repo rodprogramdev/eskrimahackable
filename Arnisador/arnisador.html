@@ -146,7 +146,7 @@
 
 
 
-        #enemy3 {
+        #fireEnemy {
             background-image: url(../images/fireenemy.png);
             background-size: 100%;
             background-repeat: no-repeat;
@@ -160,6 +160,7 @@
             animation-duration: 5s;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
+            background-color:green;
 
         }
 
@@ -498,7 +499,7 @@
                 <div class="manhole--1"></div>
                 <div id="enemy2"></div>
                 <div class="manhole--2"></div>
-                <div id="enemy3"></div>
+                <div id="fireEnemy"></div>
                 <div id="enemy4"></div>
                 <div id="goon1"></div>
                 <div id="goon1Bullet"></div>
@@ -637,6 +638,7 @@
 
             // attackButton(event);
             gameOver();
+            changeCostume();
 
         }//end of function animateAll
 
@@ -769,6 +771,35 @@
         
         }   
         
+
+        function changeCostume(){
+            var changeCostume = setInterval(function () {
+                var char = document.getElementById("mainCharacter");
+                var fireEnemy = document.getElementById("fireEnemy");
+                var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                var charLeft = parseInt(window.getComputedStyle(char).getPropertyValue("left"));
+                var charWidth = parseInt(window.getComputedStyle(char).getPropertyValue("width"));
+                var charHeight = parseInt(window.getComputedStyle(char).getPropertyValue("height"));             
+                var enemy3Left = parseInt(window.getComputedStyle(fireEnemy).getPropertyValue("left"));
+                var enemy3Width = parseInt(window.getComputedStyle(fireEnemy).getPropertyValue("width"));
+                var enemy3Top = parseInt(window.getComputedStyle(fireEnemy).getPropertyValue("top"));
+                var enemy3Height = parseInt(window.getComputedStyle(fireEnemy).getPropertyValue("height"));
+
+                if (charLeft < enemy3Left + enemy3Width &&
+                    charLeft + charWidth > enemy3Left &&
+                    charTop < enemy3Top + enemy3Height &&
+                    charTop + charHeight  > enemy3Top 
+                ) {
+                  
+                  
+                        char.style.backgroundImage = "url('../images/charHit1.png')";
+                    
+                } 
+                
+
+            },10);
+        
+        }
 
         document.onkeydown = animateAll;
 
