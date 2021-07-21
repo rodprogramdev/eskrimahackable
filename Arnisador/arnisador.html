@@ -21,12 +21,13 @@
 
         #mainCharacter {
             background-image: url(../images/x3rima1.png);
-            background-size: cover;
+            background-size: 95%;
+            background-repeat:no-repeat;
             position: absolute;
             top: 400px;
             left: 400px;
-            height: 200px;
-            width: 145px;
+            height: 190px;
+            width: 138px;
             /* background-color: green; */
             /* height:230px;
             width:130px;
@@ -148,19 +149,19 @@
 
         #fireEnemy {
             background-image: url(../images/fireenemy.png);
-            background-size: 100%;
+            background-size: 85%;
             background-repeat: no-repeat;
             position: absolute;
             display: inline;
             top: 380px;
             left: 3000px;
-            height: 50px;
-            width: 100px;
+            height: 45px;
+            width: 80px;
             animation-name: example3;
             animation-duration: 5s;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
-            background-color:green;
+            /* background-color:green; */
 
         }
 
@@ -172,16 +173,20 @@
             }
 
             30% {
-                top: 420px;
+                top: 520px;
 
             }
 
             40% {
-                top: 350px;
+                top: 470px;
+            }
+
+            45%{
+                top:420px;
             }
 
             50% {
-                top: 450px;
+                top: 380px;
 
             }
 
@@ -190,7 +195,7 @@
             }
 
             100% {
-                top: 380px;
+                top: 300px;
                 left: -100px;
             }
         }
@@ -466,6 +471,12 @@
             color: #fff;
         }
 
+
+        .carRaceGame{
+            position:absolute;
+            top: 10%;
+            left: 2700px;
+        }
         #audioPlay {
             background-color: rgb(37, 138, 19);
             opacity: .5;
@@ -476,6 +487,22 @@
             /* border-radius: 50%; */
             opacity:1;
             cursor:pointer;
+        }
+
+        #lifeGauge{
+            background-color: rgba(0, 0, 0, 0.602);
+            color: white;
+            padding: 20px;
+            font-size: .8rem;
+            position: fixed;
+            top: 5rem;
+            left: 3%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .lifeGauge__energy--span{
+            color: red;
         }
     </style>
 </head>
@@ -493,7 +520,7 @@
                 <p class="slide__paragraph">{Use D to move forward | A Backward | S Down | W Up & Mouse to scroll
                     background}</p>
 
-                <div id="mainCharacter" onclick="attackButton()"></div>
+                <div id="mainCharacter"  ></div>
                 <!-- <div id="heroBullet"></div> -->
                 <div id="enemy"></div>
                 <div class="manhole--1"></div>
@@ -504,6 +531,7 @@
                 <div id="goon1"></div>
                 <div id="goon1Bullet"></div>
                 <div id="reverseBullet"></div>
+                <div id="lifeGauge"><p class="lifeGauge__energy">LIFE GAUGE: <span class="lifeGauge__energy--span">2</span></p></div>
             </div>
             <!-- <div class="slide two">
                 <h1>This is me</h1>
@@ -523,6 +551,12 @@
                 <a href="../game4/tennisGame.html">TENNIS GAME</a> |
                 <a href="../game5/snakegame.html">SCRATCH GAME</a> |
                 <a href="../index.html">BACK TO HOME</a> |
+                <div class="carRaceGame">
+                    <a href="../game5/carGame.html">CAR RACE GAME</a> |
+                </div>
+                <div class="score"><p>SCORE: <span>0</span></p></div>
+                    
+                
 
 
             </div>
@@ -552,6 +586,7 @@
 
         var moveleft = 400;
         var moveUp = 400;
+        var charLife = 3;
 
         const hero = {
             top: 400,
@@ -580,7 +615,7 @@
             }//end of moveUp
 
             if (e.keyCode == 83) {
-                if (moveUp < 440) {
+                if (moveUp < 480) { //440
                     moveUp += 20;
                     mainCharacter.style.top = moveUp + 'px';
                     mainCharacter.style.backgroundImage = "url('../images/moveDown2.png')";
@@ -793,8 +828,13 @@
                   
                   
                         char.style.backgroundImage = "url('../images/charHit1.png')";
+                        char.style.opacity=0.5;
+                        
                     
-                } 
+                } else{
+                    char.style.opacity=1;
+                   
+                }
                 
 
             },10);
@@ -810,6 +850,9 @@
                  mainCharacter.style.backgroundImage = "url('../images/attack.png')";
                  attackCollision();
              } //end of if attack mousclick
+            //  else{
+            //     mainCharacter.style.backgroundImage = "url('../images/x3rima.png')";
+            //  }
             
             
          }//end of function MouseClick

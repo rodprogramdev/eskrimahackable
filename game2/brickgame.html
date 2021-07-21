@@ -40,6 +40,12 @@
             color: #fff;
             font-size: 3px;
         }
+
+        #hash{
+            color:black;
+            text-align:center;
+            
+        }
     </style>
 </head>
 
@@ -48,9 +54,11 @@
 
     <div class="canvas">
         <h1>BRICK GAME</h1>
-        <canvas id="gameCanvas" height="500" width="900">
-            <p id="hash">482c811da5d5b4bc6d497ffa98491e38</p>
+        <canvas id="gameCanvas" height="500" width="800">
+            <!-- height="500" width="900"-->
+           
         </canvas>
+        <!-- <p id="hash">482c811da5d5b4bc6d497ffa98491e38</p>  -->
     </div>
 
     <script>
@@ -73,11 +81,11 @@
         const PADDLE_THICKNESS = 10; //top to bottom
         const PADDLE_DIST_FROM_EDGE = 60;// 10% of the height of the canvass 
 
-        const BRICK_W = 70;
-        const BRICK_H = 20;
+        const BRICK_W = 80;
+        const BRICK_H = 20; //Temporarily Halved 20
         const BRICK_GAP = 2;
-        const BRICK_COLS = 13;
-        const BRICK_ROWS = 10;
+        const BRICK_COLS = 10;
+        const BRICK_ROWS = 14; //Temporarily halved 10
 
 
         /*BRICK TO APPEAR AND DISSAPEAR*/
@@ -89,6 +97,7 @@
 
         // var brickGrid = [ true, true, true, true, true ];
         var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
+        var bricksLeft = 0;
 
 
 
@@ -106,24 +115,60 @@
 
             paddleX = mouseX - PADDLE_WIDTH / 2; // we set the paddleX straight to it. This should update the X coordinate for paddle x. This 
 
+            //Cheat to test ball in any position;
+            // ballX = mouseX;
+            // ballY = mouseY;
+            // ballSpeedX = 4;
+            // ballSpeedY = -4;
 
         }
 
-
-        /******************************FUNCTION DECLARATION WHEN THE WINDOWS LOAD******************************************/
-
+        /****************************FUNCTION BRICK RESET*************************************************/
         function brickReset() {
-            for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
-                // if(Math.random() <0.5){
+            bricksLeft = 0;
+            var i;
+            for (i=0;i<3*BRICK_COLS; i++) {
+                brickGrid[i] = false;
+            }
+            for (; i<BRICK_COLS*BRICK_ROWS; i++) {
                 brickGrid[i] = true;
-                // } else {
-                //     brickGrid[i] = false;
-
-                //} // end of else (random check)
-
+                bricksLeft++;
             }// end of for each brick
+
+             alert("TRY AGAIN!")
+            // var hash = document.getElementById("hash");
+            // if(hash){
+               
+            //         hash.style.color="white";
+            //         hash.style.fontsize= "5";
+                    
+            // }
             //    brickGrid[20]=false;
         } //end of brickReset function
+
+
+        function brickReset2() {
+            bricksLeft = 0;
+            var i;
+            for (i=0;i<3*BRICK_COLS; i++) {
+                brickGrid[i] = false;
+            }
+            for (; i<BRICK_COLS*BRICK_ROWS; i++) {
+                brickGrid[i] = true;
+                bricksLeft++;
+            }// end of for each brick
+
+            alert("HERE's your reward: 482c811da5d5b4bc6d497ffa98491e38")
+            // var hash = document.getElementById("hash");
+            // if(hash){
+               
+            //         hash.style.color="white";
+            //         hash.style.fontsize= "5";
+                    
+            // }
+            //    brickGrid[20]=false;
+        } //end of brickReset function
+        /******************************FUNCTION DECLARATION WHEN THE WINDOWS LOAD******************************************/
 
         window.onload = function () {
             var framesPersecond = 30;
@@ -133,11 +178,9 @@
 
 
             /*******************************CODE TO MAKE THE PADDLE TO MOVE*****************************/
-
             canvas.addEventListener('mousemove', updateMousePosition);
-
             brickReset();
-            ballReset()
+            ballReset();
         }
 
 
@@ -150,34 +193,51 @@
 
         /****************************FUNCTION BALL RESET*************************************************/
         //This will stick the ball in the middle of the screen when it misses the ball at the bottom. 
-
         function ballReset() {
             ballX = canvas.width / 2; // we could hard code this but we want this so that in case we would want to change the size later.
-            ballY = canvas.height / 2;
+            ballY = canvas.height / 1.5;
         }
 
+
+
+
+        /****************************FUNCTION BALL MOVE*************************************************/
         //Lets look at the code in the moveAll function on when does the ball hit the bottom of the screen. 
         function ballMove() {
             ballX += ballSpeedX;
-            if (ballX < 0) { //left side
+            if (ballX < 0 && ballSpeedX < 0.0) { //left side
                 ballSpeedX *= -1;
 
             }
-            if (ballX > canvas.width) { // right side
+            if (ballX > canvas.width && ballSpeedX > 0.0) { // right side
                 ballSpeedX *= -1;
 
             }
             ballY += ballSpeedY;
-            if (ballY < 0) { //top edge
+            if (ballY < 0 && ballSpeedY < 0.0) { //top edge
                 ballSpeedY *= -1;
 
             }
             if (ballY > canvas.height) { //bottom of the screen
                 ballReset();
+                brickReset();
                 //ballSpeedY *= -1;
             }
 
         }
+        /****************************HELPER FUNCTION TO DO BALANCE CHECK*************************************/
+        function isBrickAtColRow(col,row){
+            if(col >=  0 && col < BRICK_COLS &&
+                row >= 0 && row < BRICK_ROWS){
+                    var brickIndexUnderCoord = rowColToArrayIndex(col,row);
+                    return brickGrid[brickIndexUnderCoord];
+                }else{
+                    return false;
+                }
+            
+        }
+
+        /****************************FUNCTION BRICK HANDLING*************************************************/
 
         function ballBrickHandling() {
 
@@ -188,9 +248,41 @@
             if (ballBrickCol >= 0 && ballBrickCol < BRICK_COLS &&
                 ballBrickRow >= 0 && ballBrickRow < BRICK_ROWS) {
 
-                if (brickGrid[brickIndexUnderBall]) {
+                if (isBrickAtColRow(ballBrickCol,ballBrickRow)) {
                     brickGrid[brickIndexUnderBall] = false;
-                    ballSpeedY *= -1;
+                    bricksLeft--;
+                    console.log(bricksLeft);
+                    var prevBallX = ballX - ballSpeedX;
+                    var prevBallY = ballY - ballSpeedY;
+                    var prevBrickCol = Math.floor(prevBallX / BRICK_W);
+                    var prevBrickRow = Math.floor(prevBallY / BRICK_H);
+
+                    var BothTestsFailed = true;
+                    if (prevBrickCol != ballBrickCol) {
+                        // var adjBrickSide = rowColToArrayIndex(prevBrickCol, ballBrickRow);
+
+                        if (isBrickAtColRow(prevBrickCol,ballBrickRow) == false) {
+                            ballSpeedX *= -1;
+                            BothTestsFailed = false;
+                        }
+
+                    }
+                    if (prevBrickRow != ballBrickRow) {
+                        // var adjBrickTopBottom = rowColToArrayIndex(ballBrickCol, prevBrickRow);
+
+                        if (isBrickAtColRow(ballBrickCol, prevBrickRow) == false) {
+                            ballSpeedY *= -1;
+                            BothTestsFailed = false;
+                        }
+
+                    }
+
+                    if (BothTestsFailed) { // armpit case, this will prevent the ball from going through
+                        ballSpeedX *= -1;
+                        ballSpeedY *= -1;
+                    }
+
+
 
                 }// end of brick found
 
@@ -209,6 +301,7 @@
                 ballY < paddleBottomEdgeY &&  // above bottom of paddle
                 ballX > paddleLeftEdgeX &&  // right of the left side of paddle
                 ballX < paddleRightEdgeX) { //left of the right side of the paddle
+
                 ballSpeedY *= -1;
 
                 /*BALL CONTROL CODE*/
@@ -216,8 +309,17 @@
                 var centerOfPaddleX = paddleX + PADDLE_WIDTH / 2;
                 var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
                 ballSpeedX = ballDistFromPaddleCenterX * 0.35;
-            }
-        }
+
+                if (bricksLeft == 0) {
+                    brickReset2();
+                   
+                  
+
+                }//out of bricks
+
+            }// ball center inside paddle
+
+        }//end of function ballPaddleHandling
 
         function moveAll() {
             ballMove();
@@ -254,16 +356,6 @@
         }//end of drawBricks()
 
         function drawAll() {
-
-            /*Draw Filled Rectangle*/
-
-            /*This two lines is smearing black over the whole canvass so that it hides the old position of the 
-            ball. 
-          
-            //  canvasContext.fillStyle = 'black';
-            //  canvasContext.fillRect(0,0, canvas.width,canvas.height); //x, y top left corner of the rectangle.
-            */
-
             colorRect(0, 0, canvas.width, canvas.height, 'black'); // This will clear the screen
             colorCircle(ballX, ballY, 10, 'white'); // This will draw the circle  
 
@@ -325,6 +417,10 @@
 
         /**/
 
+
+    </script>
+    <!--RUN THIS SCRIPT WHEN ALL BRICKS HAVE BEEN DESTROYED!!-->
+    <script>
 
     </script>
 </body>
