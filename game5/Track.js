@@ -1,6 +1,8 @@
 
 /******************************VARIABLES ******************************************/
-       
+       var roadPic = document.createElement("img");
+       var wallPic = document.createElement("img");
+
 
         const TRACK_W = 40;
         const TRACK_H = 40; 
@@ -30,6 +32,18 @@
         // var trackGrid = new Array(TRACK_COLS * TRACK_ROWS);
         // var tracksLeft = 0;
 
+
+
+        const TRACK_ROAD = 0;
+        const TRACK_WALL = 1;
+        const TRACK_PLAYERSTART =2;
+
+        function trackLoadImages(){
+            roadPic.src ="../images/track_road.png";
+            wallPic.src ="../images/track_wall.png";
+            
+
+        }
            /****************************HELPER FUNCTION TO DO BALANCE CHECK*************************************/
            function isWallAtColRow(col,row){
             if(col >=  0 && col < TRACK_COLS &&
@@ -82,9 +96,14 @@
 
               var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 
-              if (trackGrid[arrayIndex] == 1) {
-                  colorRect(TRACK_W * eachCol, TRACK_H * eachRow,
-                      TRACK_W - TRACK_GAP, TRACK_H - TRACK_GAP, 'brown');
+              if (trackGrid[arrayIndex] == TRACK_ROAD) {
+                canvasContext.drawImage(roadPic,TRACK_W * eachCol, TRACK_H * eachRow);
+              }else if (trackGrid[arrayIndex] == TRACK_WALL){
+                canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
+
+
+                //   colorRect(TRACK_W * eachCol, TRACK_H * eachRow,
+                //       TRACK_W - TRACK_GAP, TRACK_H - TRACK_GAP, 'brown');
               } //end of is this track here
           } // end of for each col      
       } //endof for each row

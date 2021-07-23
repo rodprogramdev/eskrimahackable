@@ -11,7 +11,8 @@
             setInterval(updateAll, 1000 / framesPersecond);
            
             setupInput();
-            
+
+            trackLoadImages();
             carImageLoad();
            
             carReset();
@@ -33,14 +34,15 @@
 
         /******************************GENERAL FUNCTION DECLARATION FOR DRAWING ON THE CANVASS******************************************/
 
-        function clearScreen(){
-            colorRect(0, 0, canvas.width, canvas.height, 'black'); // This will clear the screen
-        }
+        // function clearScreen(){
+        //     colorRect(0, 0, canvas.width, canvas.height, 'black'); // This will clear the screen
+        // }
 
         function drawAll() {
-            clearScreen();           
-            carDraw();
+            // clearScreen();           
+           
             drawTracks();
+            carDraw();
 
         }
 
