@@ -24,7 +24,7 @@
                 carPicLoaded = true;
             }
 
-            carPic.src = "../images/car.png";
+            carPic.src = "../images/car8.png";
         }
           
         /****************************FUNCTION CAR RESET*************************************************/
