@@ -4,6 +4,7 @@ var roadPic = document.createElement("img");
 var wallPic = document.createElement("img");
 var goalPic = document.createElement("img");
 var treePic = document.createElement("img");
+var gasPic = document.createElement("img");
 
 var picsToLoad = 0; //set automatically based on imageList in loadImages
 
@@ -59,8 +60,9 @@ function loadImages() {
         // {varName: wallPic, theFile:"carRaceImages/track_wall.png"}
         {varName: carPic, theFile:"blackCar.png"},
         {varName: roadPic, theFile:"track_road.png"},
-        {varName: wallPic, theFile:"track_wall.png"},
+        {varName: wallPic, theFile:"track_wall2.png"},
         {varName: goalPic, theFile:"track_goal.png"},
+        {varName: gasPic, theFile:"gasStation.png"},
         {varName: treePic, theFile:"track_trees.png"}
 
     ];
