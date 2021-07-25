@@ -583,6 +583,8 @@
         //70 F
         //16
 
+        var characterPic = document.createElement("img");
+        var characterLoaded = false;
 
         var moveleft = 400;
         var moveUp = 400;
@@ -602,9 +604,6 @@
         }
 
         function animateAll(e) {
-
-
-
             if (e.keyCode == 87) {
                 if (moveUp > 380) {
                     moveUp -= 20;

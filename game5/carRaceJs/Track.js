@@ -1,8 +1,6 @@
 
 /******************************VARIABLES ******************************************/
-       var roadPic = document.createElement("img");
-       var wallPic = document.createElement("img");
-
+     
 
         const TRACK_W = 40;
         const TRACK_H = 40; 
@@ -12,21 +10,21 @@
 
      
 
-        var trackGrid = [ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,  
-                          1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,
-                          1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                          1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,
-                          1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                          1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,1,  
-                          1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,
+        var trackGrid = [ 4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,  
+                          4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,4,
+                          1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                          1,0,3,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,
+                          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,0,1,
+                          4,4,4,1,1,1,1,4,4,4,1,1,0,0,0,0,1,0,0,1,  
+                          4,4,4,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,
                           1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,
-                          1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,1,
-                          1,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,1,
+                          1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,
+                          1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
                           1,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1,  
-                          1,0,0,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,
-                          1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,
-                          1,0,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,  
+                          1,0,0,0,1,4,1,1,1,1,1,1,1,0,1,1,4,1,1,1,
+                          1,0,0,1,1,4,4,1,1,1,1,1,1,1,1,4,4,4,1,1,
+                          1,0,2,1,1,4,4,4,4,4,4,4,1,1,4,4,4,4,4,1,
+                          1,1,1,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,  
                          
                             ];
         // var trackGrid = new Array(TRACK_COLS * TRACK_ROWS);
@@ -37,19 +35,16 @@
         const TRACK_ROAD = 0;
         const TRACK_WALL = 1;
         const TRACK_PLAYERSTART =2;
+        const TRACK_GOAL = 3;
+        const TRACK_TREE = 4;
+        
 
-        function trackLoadImages(){
-            roadPic.src ="../images/track_road.png";
-            wallPic.src ="../images/track_wall.png";
-            
-
-        }
            /****************************HELPER FUNCTION TO DO BALANCE CHECK*************************************/
-           function isWallAtColRow(col,row){
+           function isObstacleAtColRow(col,row){
             if(col >=  0 && col < TRACK_COLS &&
                 row >= 0 && row < TRACK_ROWS){
                     var trackIndexUnderCoord = rowColToArrayIndex(col,row);
-                    return (trackGrid[trackIndexUnderCoord] == 1);
+                    return (trackGrid[trackIndexUnderCoord] != TRACK_ROAD);
                 }else{
                     return false;
                 }
@@ -69,7 +64,7 @@
           if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
               carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
 
-              if (isWallAtColRow(carTrackCol,carTrackRow)) {
+              if (isObstacleAtColRow(carTrackCol,carTrackRow)) {
                   carX -= Math.cos(carAng) * carSpeed;
           carY -= Math.sin(carAng) * carSpeed;
           // carAng += 0.02; Makes the car spin
@@ -95,16 +90,36 @@
           for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
 
               var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
+              var tileKindHere =trackGrid[arrayIndex];
 
-              if (trackGrid[arrayIndex] == TRACK_ROAD) {
-                canvasContext.drawImage(roadPic,TRACK_W * eachCol, TRACK_H * eachRow);
-              }else if (trackGrid[arrayIndex] == TRACK_WALL){
-                canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
+              var useImg;
+               switch(tileKindHere) {
+                 case TRACK_ROAD:
+                  useImg = roadPic;
+                break;
+                case TRACK_WALL:
+                  useImg=wallPic;
+                break;
+                case TRACK_GOAL:
+                  useImg = goalPic;
+                break;
+                case TRACK_TREE:
+                  useImg=treePic;
+                break;
+
+
+
+              // if (tileKindHere == TRACK_ROAD) {
+              //   canvasContext.drawImage(roadPic,TRACK_W * eachCol, TRACK_H * eachRow);
+              // }else if (tileKindHere == TRACK_WALL){
+              //   canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
 
 
                 //   colorRect(TRACK_W * eachCol, TRACK_H * eachRow,
                 //       TRACK_W - TRACK_GAP, TRACK_H - TRACK_GAP, 'brown');
               } //end of is this track here
+              canvasContext.drawImage(useImg,TRACK_W * eachCol, TRACK_H * eachRow);
+
           } // end of for each col      
       } //endof for each row
   }//end of drawTracks()
