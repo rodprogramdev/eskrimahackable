@@ -87,42 +87,52 @@
 
     
     function drawTracks() {
+
+      var arrayIndex = 0;
+      var drawTileX = 0;
+      var drawTileY = 0;
+
       for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
           for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
 
-              var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
+              // var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
               var tileKindHere =trackGrid[arrayIndex];
+              var useImg = trackPics[tileKindHere];
+              // var useImg;
 
-              var useImg;
-               switch(tileKindHere) {
-                 case TRACK_ROAD:
-                  useImg = roadPic;
-                break;
-                case TRACK_WALL:
-                  useImg=wallPic;
-                break;
-                case TRACK_GOAL:
-                  useImg = goalPic;
-                break;
-                case TRACK_TREE:
-                  useImg=treePic;
-                break;
-                case TRACK_GAS:
-                  useImg=gasPic;
-                break;
-
-
-              // if (tileKindHere == TRACK_ROAD) {
-              //   canvasContext.drawImage(roadPic,TRACK_W * eachCol, TRACK_H * eachRow);
-              // }else if (tileKindHere == TRACK_WALL){
-              //   canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
+              //  switch(tileKindHere) {
+              //    case TRACK_ROAD:
+              //     useImg = roadPic;
+              //   break;
+              //   case TRACK_WALL:
+              //     useImg=wallPic;
+              //   break;
+              //   case TRACK_GOAL:
+              //     useImg = goalPic;
+              //   break;
+              //   case TRACK_TREE:
+              //     useImg=treePic;
+              //   break;
+              //   case TRACK_GAS:
+              //     useImg=gasPic;
+              //   break;
 
 
-                //   colorRect(TRACK_W * eachCol, TRACK_H * eachRow,
-                //       TRACK_W - TRACK_GAP, TRACK_H - TRACK_GAP, 'brown');
-              } //end of is this track here
-              canvasContext.drawImage(useImg,TRACK_W * eachCol, TRACK_H * eachRow);
+              // // if (tileKindHere == TRACK_ROAD) {
+              // //   canvasContext.drawImage(roadPic,TRACK_W * eachCol, TRACK_H * eachRow);
+              // // }else if (tileKindHere == TRACK_WALL){
+              // //   canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
 
+
+              //   //   colorRect(TRACK_W * eachCol, TRACK_H * eachRow,
+              //   //       TRACK_W - TRACK_GAP, TRACK_H - TRACK_GAP, 'brown');
+              // } //end of is this track here
+              // canvasContext.drawImage(useImg,TRACK_W * eachCol, TRACK_H * eachRow);
+              canvasContext.drawImage(useImg,drawTileX, drawTileY);
+              drawTileX += TRACK_W;
+              arrayIndex++;
           } // end of for each col      
+          drawTileY += TRACK_H;
+          drawTileX =0;
       } //endof for each row
   }//end of drawTracks()
