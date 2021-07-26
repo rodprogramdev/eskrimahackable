@@ -1,15 +1,15 @@
+const KEY_LEFT_ARROW = 37; //keyboard A
+const KEY_UP_ARROW = 38; // keyboard W
+const KEY_RIGHT_ARROW =39 ;//keyboard D
+const KEY_DOWN_ARROW = 40;// keyboard S
+
+const KEY_W = 87; // keyboard W
+const KEY_A = 65; //keyboard A
+const KEY_S = 83;// keyboard S
+const KEY_D =68 ;//keyboard D
+
 var mouseX = 0;
 var mouseY = 0;
-
-const KEY_LEFT_ARROW = 65; //keyboard A
-const KEY_UP_ARROW = 87; // keyboard W
-const KEY_RIGHT_ARROW =68 ;//keyboard D
-const KEY_DOWN_ARROW = 83;// keyboard S
-
-var keyHeld_Gas = false;
-var keyHeld_Reverse = false;
-var keyHeld_TurnLeft = false;
-var keyHeld_TurnRight = false;
 
 function setupInput(){
   canvas.addEventListener('mousemove', updateMousePosition);
@@ -17,16 +17,16 @@ function setupInput(){
   document.addEventListener('keydown',keyPressed);
   document.addEventListener('keyup',keyReleased);
 
+  blackCar.setupInput(KEY_W, KEY_D, KEY_S, KEY_A);
+  blueCar.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW);
+
 }
-
-/*****************************FUNCTION TO UPDATE THE MOUSE POSITION**********************************************/
-
 
 function updateMousePosition(mouseEvent) {
     var rect = canvas.getBoundingClientRect(); 
     var root = document.documentElement; 
-    mouseX = mouseEvent.clientX - rect.left - root.scrollLeft; // this will grab the clientX which is what we call t
-    mouseY = mouseEvent.clientY - rect.top - root.scrollTop; // we don't need the mouse Y but we might need this value some other time so we put it here. 
+    mouseX = mouseEvent.clientX - rect.left - root.scrollLeft;
+    mouseY = mouseEvent.clientY - rect.top - root.scrollTop; 
 
    
 
@@ -39,60 +39,34 @@ function updateMousePosition(mouseEvent) {
 }
 
 
-/******************************FUNCTION DECLARATION WHEN THE WINDOWS LOAD******************************************/
 
+function keySet(keyEvent,whichCar, setTo){
+    if(keyEvent.keyCode == whichCar.controlKeyLeft){
+        whichCar.keyHeld_TurnLeft = setTo;
+
+    }
+    if(keyEvent.keyCode == whichCar.controlKeyRight){
+        whichCar.keyHeld_TurnRight = setTo;
+    }
+
+    if(keyEvent.keyCode ==whichCar.controlKeyUp){
+        whichCar.keyHeld_Gas = setTo;
+    }
+    if(keyEvent.keyCode == whichCar.controlKeyDown){
+         whichCar.keyHeld_Reverse = setTo;
+    }
+
+}
 function keyPressed(evt){
-    //console.log("Key pressed:"+evt.keyCode);
-    if(evt.keyCode == KEY_LEFT_ARROW){
-        // carAng -= 0.5;
-        keyHeld_TurnLeft = true;
+  
+    keySet(evt,blackCar,true);
+    keySet(evt,blueCar,true);
+    evt.preventDefault();
 
-    }
-    if(evt.keyCode == KEY_RIGHT_ARROW){
-        
-        // carAng += 0.5;
-        keyHeld_TurnRight = true;
-    }
-
-    if(evt.keyCode ==KEY_UP_ARROW){
-        console.log("Key pressed:"+ evt.keyCode);
-        // carSpeed += 0.5;
-        keyHeld_Gas = true;
-    }
-    if(evt.keyCode == KEY_DOWN_ARROW){
-        // carAng -= 0.5;
-         keyHeld_Reverse = true;
-    }
 }
 
 function keyReleased(evt){
-    // console.log("Key release:"+evt.keyCode);
-    if(evt.keyCode == KEY_LEFT_ARROW){
-        // carAng -= 0.5;
-        keyHeld_TurnLeft = false;
-
-    }
-    if(evt.keyCode == KEY_RIGHT_ARROW){
-        // carAng += 0.5;
-        keyHeld_TurnRight = false;
-    }
-
-    if(evt.keyCode ==KEY_UP_ARROW){
-        // carSpeed += 0.5;
-        keyHeld_Gas = false;
-    }
-    if(evt.keyCode == KEY_DOWN_ARROW){
-        // carAng -= 0.5;
-         keyHeld_Reverse = false;
-    }
+   
+    keySet(evt,blackCar,false);
+    keySet(evt,blueCar,false);
 }
-
-// const KEY_LEFT_ARROW = 65; //keyboard A
-// const KEY_UP_ARROW = 87; // keyboard W
-// const KEY_RIGHT_ARROW =68 ;//keyboard D
-// const KEY_DOWN_ARROW = 83;// keyboard S
-
-// var keyHeld_Gas = false;
-// var keyHeld_reverse = false;
-// var keyHeld_TurnLeft = false;
-// var keyHeld_TurnRight = false;

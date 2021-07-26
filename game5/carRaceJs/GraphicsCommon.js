@@ -4,7 +4,7 @@
             canvasContext.save();
             canvasContext.translate(atX,atY);
             canvasContext.rotate(withAng);
-            canvasContext.drawImage(useBitmap,-useBitmap.width/2,-useBitmap.height/2);
+            canvasContext.drawImage(useBitmap, -useBitmap.width/2, -useBitmap.height/2);
             canvasContext.restore();
         }
 
@@ -16,9 +16,8 @@
 
         function colorCircle(centerX, centerY, radius, fillColor) {
             canvasContext.fillStyle = fillColor;
-            canvasContext.beginPath(); //hover functions 
-            canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true); // this will work because the Math.PI * 2 will never change  nor the other lines and this is just simplifying things for us.  
-            canvasContext.fill();
+            canvasContext.beginPath();  
+            canvasContext.arc(centerX, centerY, 10, 0, Math.PI * 2, true); 
 
         }
 
