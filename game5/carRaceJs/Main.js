@@ -18,10 +18,31 @@
             setInterval(updateAll, 1000 / framesPersecond);
             
             setupInput();
-            blueCar.reset(otherCarPic);
-            blackCar.reset(carPic);
+
+            loadLevel(levelList[levelNow]);
+            // trackGrid = levelOne;
+            // blueCar.reset(otherCarPic, "Machine Raider");
+            // blackCar.reset(carPic, "Black Fire");
            
           
+        }
+
+        function nextLevel(){
+            levelNow++;
+            if(levelNow >= levelList.length){
+                levelNow = 0;
+            }
+            loadLevel(levelList[levelNow]);
+        }
+
+        function loadLevel(whichLevel){
+            trackGrid = whichLevel.slice();
+            blueCar.reset(otherCarPic, "Machine Raider");
+            blackCar.reset(carPic, "Black Fire");
+
+            //trackGrid[30] = 5;
+            //console.log(whichLevel[30]);
+           
         }
         
         function updateAll() {

@@ -32,7 +32,10 @@ function loadImages() {
         {trackType: TRACK_GOAL, theFile:"track_goal.png"},
         {trackType: TRACK_TREE, theFile:"track_trees.png"},
         {trackType: TRACK_GAS, theFile:"gasStation.png"}
+        //{trackType: TRACK_COIN, theFile:"coin.gif"}
+
     ];
+    
 
     picsToLoad = imageList.length;
    

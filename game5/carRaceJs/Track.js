@@ -3,7 +3,7 @@
         const TRACK_GAP = 2;
         const TRACK_COLS = 20;
         const TRACK_ROWS = 15; 
-        var trackGrid = [ 4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,  
+        var levelOne = [ 4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,  
                           4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,4,
                           1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
                           1,0,3,0,0,0,0,1,1,5,0,0,0,0,0,0,0,0,0,1,
@@ -18,8 +18,41 @@
                           1,0,0,1,1,4,4,1,1,1,1,1,1,1,1,4,4,4,1,1,
                           1,2,2,1,1,4,4,4,4,4,4,4,1,1,4,4,4,4,1,1,
                           1,1,1,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+
+        var levelTwo = [ 4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,  
+                          4,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,1,4,
+                          1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,4,4,4,1,
+                          1,0,0,0,0,0,0,1,1,5,0,0,0,0,3,0,4,4,4,1,
+                          1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,4,4,4,1,
+                          4,4,4,0,0,1,1,4,4,4,1,1,0,0,0,0,1,0,0,1,  
+                          4,4,4,0,0,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,
+                          1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,
+                          1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,
+                          1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+                          1,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1,  
+                          1,4,4,0,1,4,1,1,1,1,1,1,1,5,1,1,0,2,2,1,
+                          1,4,4,1,1,4,4,1,1,1,1,1,1,1,1,4,0,0,0,1,
+                          1,4,4,1,1,4,4,4,4,4,4,4,1,1,4,4,4,4,1,1,
+                          1,1,1,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
       
-                        
+          var levelThree = [ 4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,  
+                            4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,4,
+                            1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                            1,0,0,0,0,0,0,1,1,5,0,0,0,0,0,0,0,0,0,1,
+                            1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,
+                            4,0,0,0,1,1,1,4,4,4,1,1,0,0,0,0,1,0,0,1,  
+                            4,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,0,0,1,
+                            1,0,0,0,1,0,0,3,0,1,0,0,0,0,0,0,1,0,0,1,
+                            1,0,0,0,1,0,0,3,0,0,0,0,1,0,0,0,1,0,0,1,
+                            1,0,0,0,1,0,0,3,0,0,0,0,1,0,0,0,0,0,0,1,
+                            1,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,1,  
+                            1,2,2,0,1,4,1,1,1,1,1,1,1,4,1,1,0,0,0,1,
+                            1,0,0,0,1,4,4,1,1,1,1,1,1,1,1,4,5,0,0,1,
+                            1,0,0,0,1,4,4,4,4,4,4,4,1,1,4,4,4,4,1,1,
+                            1,1,1,1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+        var levelList = [levelOne,levelTwo,levelThree];
+        var levelNow = 0;
+        var trackGrid = [];      
 
         const TRACK_ROAD = 0;
         const TRACK_WALL = 1;
@@ -27,19 +60,31 @@
         const TRACK_GOAL = 3;
         const TRACK_TREE = 4;
         const TRACK_GAS = 5;
+        // const TRACK_COIN = 6;
+
         
 
-           function isObstacleAtColRow(col,row){
+        // function isObstacleAtColRow(col,row){
+        //     if(col >=  0 && col < TRACK_COLS &&
+        //         row >= 0 && row < TRACK_ROWS){
+        //             var trackIndexUnderCoord = rowColToArrayIndex(col,row);
+        //             return (trackGrid[trackIndexUnderCoord] != TRACK_ROAD);
+        //         } else {
+        //             return false;
+        //         }
+            
+        // }
+
+        function returnTileTypeAtColRow(col,row){
             if(col >=  0 && col < TRACK_COLS &&
                 row >= 0 && row < TRACK_ROWS){
                     var trackIndexUnderCoord = rowColToArrayIndex(col,row);
-                    return (trackGrid[trackIndexUnderCoord] != TRACK_ROAD);
+                    return trackGrid[trackIndexUnderCoord];
                 } else {
-                    return false;
+                    return TRACK_WALL;
                 }
             
         }
-
 
         function carTrackHandling(whichCar) {
           var carTrackCol = Math.floor(whichCar.x / TRACK_W);
@@ -48,8 +93,16 @@
 
           if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
               carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
+              var tileHere = returnTileTypeAtColRow(carTrackCol,carTrackRow);
+                
 
-              if (isObstacleAtColRow(carTrackCol,carTrackRow)) {
+               if (tileHere == TRACK_GOAL){
+                // whichCar.speed *= -0.5;
+                //   alert(whichCar.name + "Wins!");
+                // console.log(whichCar.name + "WINS!");
+                // loadLevel(levelList);
+                nextLevel();
+              }else if (tileHere != TRACK_ROAD) {
                      whichCar.x -= Math.cos(whichCar.ang) * whichCar.speed;
 			         whichCar.y -= Math.sin(whichCar.ang) * whichCar.speed;
                      whichCar.speed *= -0.5;
